@@ -2,6 +2,8 @@
 
 CircleViz is a data visualization technique that arranges attributes in a circular network layout, with each attribute represented by its own circle positioned along a main orbit. Data points are visualized on each attribute's circle according to their normalized values and connected with polylines colored by class.
 
+![Demo](image.png)
+
 ## Key Features
 
 - **Attribute-Centric Layout**: Each attribute gets its own circle positioned around a main orbit
