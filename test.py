@@ -46,6 +46,10 @@ def visualize(data, features, class_col):
     global_rot = 0.0
     outer_radius = 5.0
     num_attrs = len(features)
+    
+    # Calculate maximum attribute size before overlapping would occur
+    # This is based on the chord length between adjacent attribute centers
+    max_attr_size = outer_radius * np.sin(np.pi / num_attrs) / attr_radius
 
     # Drawing function
     def draw(attr_size, attr_rot, global_rot):
@@ -110,7 +114,7 @@ def visualize(data, features, class_col):
     ax_size = plt.axes([0.1, 0.2, 0.8, 0.03])
     ax_attr_rot = plt.axes([0.1, 0.15, 0.8, 0.03])
     ax_global_rot = plt.axes([0.1, 0.1, 0.8, 0.03])
-    s_size = Slider(ax_size, 'Attr Size', 0.1, 2.0, valinit=1.0)
+    s_size = Slider(ax_size, 'Attr Size', 0.1, max_attr_size, valinit=1.0)
     s_attr_rot = Slider(ax_attr_rot, 'Attr Rotation', 0.0, 2*np.pi, valinit=0.0)
     s_global_rot = Slider(ax_global_rot, 'Global Rotation', 0.0, 2*np.pi, valinit=0.0)
 
@@ -126,5 +130,5 @@ def visualize(data, features, class_col):
 
 # Usage
 if __name__ == '__main__':
-    data, features, class_col = load_normalized_data('fisher_iris.csv')  # Replace with your file
+    data, features, class_col = load_normalized_data('wbc9.csv')  # Replace with your file
     visualize(data, features, class_col)
